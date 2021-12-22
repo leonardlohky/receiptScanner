@@ -1,0 +1,11 @@
+issuer: Grab
+keywords:
+- Grab
+- JustGrab
+fields:
+  receipt_number: 'Booking ID: (.*?)[\s]'
+  amount: 'Total Paid SGD\s+(\d+\.\d{2}\b)'
+  date: 'Picked up on\s+(\d{1,2}\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{4})'
+options:
+  currency: SGD
+  remove_whitespace: false
