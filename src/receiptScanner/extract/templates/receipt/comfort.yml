@@ -1,0 +1,10 @@
+issuer: Comfort Transportation Pte Ltd
+keywords:
+- Comfort Transportation Pte Ltd
+fields:
+  receipt_number: 'Trip No. (.*?)[\s]'
+  amount: 'Amount Paid *\$(\d+\.\d{2}\b)'
+  date: '(\d{1,2}\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{4})'
+options:
+  currency: SGD
+  remove_whitespace: false

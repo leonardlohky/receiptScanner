@@ -1,0 +1,11 @@
+issuer: Generic
+keywords:
+- Receipt No
+- GST
+fields:
+  receipt_number: 'Receipt No. (.*?)[\s]'
+  amount: 'Total \s+(\d+\.\d{2}\b)'
+  date: 'time:\s+(\d{1,2}\-\d{1,2}\-\d{1,2})'
+options:
+  currency: SGD
+  remove_whitespace: false

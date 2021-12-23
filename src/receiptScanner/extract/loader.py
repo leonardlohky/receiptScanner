@@ -41,7 +41,7 @@ def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
     return yaml.load(stream, OrderedLoader)
 
 
-def read_templates(folder=None):
+def read_templates(folder=None, doc_type=None):
     """
     Load yaml templates from template folder. Return list of dicts.
     Use built-in templates if no folder is set.
@@ -49,6 +49,9 @@ def read_templates(folder=None):
     ----------
     folder : str
         user defined folder where they stores their files, if None uses built-in templates
+    doc_type : str
+        user defined document type that is expected, if defined loads templates pertaining
+        only to that document type, else load all built-in templates
     Returns
     -------
     output : Instance of `InvoiceTemplate`
@@ -72,9 +75,12 @@ def read_templates(folder=None):
     """
 
     output = []
-
+    print("doc_type: ", doc_type)
     if folder is None:
-        folder = pkg_resources.resource_filename(__name__, "templates")
+        if doc_type is not None:
+            folder = pkg_resources.resource_filename(__name__, "templates/" + doc_type)
+        else:
+            folder = pkg_resources.resource_filename(__name__, "templates")
 
     for path, subdirs, files in os.walk(folder):
         for name in sorted(files):
