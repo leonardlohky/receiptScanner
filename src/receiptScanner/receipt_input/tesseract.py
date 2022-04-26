@@ -84,7 +84,6 @@ def to_text_img(frame, debug=None):
 
     pya.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
     text = pya.image_to_string(receipt, config="--psm 4")
-    text = text.replace("\n", " ")
     
     return text
     
@@ -119,16 +118,21 @@ def to_text(frame, debug=None):
     filename = "{}.png".format(os.getpid())
     cv2.imwrite(filename, frame)
     text = pya.image_to_string(frame, config="--psm 4")
-    text = text.replace("\n", " ")
     os.remove(filename)
 
     return text
 
 if __name__ == "__main__":
     import imageio
+    from pdf2image import convert_from_path
     
-    receipt_file = "C:/Users/Leonard/spyder-workspace/receiptScanner/docs/receipt_1.jpg"
-    img = imageio.imread(receipt_file)
-    img = np.array(img)
-    
-    res = to_text_img(img, 1)
+    receipt_file = "C:/Users/Leonard/spyder-workspace/receiptScanner/docs/receipt1.pdf"
+    images = convert_from_path(receipt_file)
+     
+    for idx, img in enumerate(images):
+        images[idx] = np.array(img)
+        
+    extracted_txts = ""
+    for img in images:
+        detected_txts = to_text(img)
+        extracted_txts += detected_txts

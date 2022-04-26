@@ -51,3 +51,5 @@ def write_to_file(data: list, path: str, date_format="%Y-%m-%d") -> None:
                     v = v.strftime(date_format)
                 csv_items.append(v)
             writer.writerow(csv_items)
+            
+    print("Saved output to %s" % filename)
